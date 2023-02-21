@@ -36,7 +36,14 @@ const ApplyForm: React.FC<Props> = ({ results }) => {
         ...employeesData,
         {
           id: tempEmployeeId,
-          ...body,
+          firstName: body.firstName,
+          lastName: body.lastName,
+          email: body.email,
+          phone: body.phone,
+          numDependents: body.numDependents,
+          dependents: body.dependents,
+          createdAt: new Date(),
+          updatedAt: new Date(),
         },
       ];
       console.log('add employee: ', addEmployee);
@@ -49,8 +56,8 @@ const ApplyForm: React.FC<Props> = ({ results }) => {
   };
 
   const handleSubmit = async (
-    values: EmployeeBody,
-    { setSubmitting, resetForm }: FormikHelpers<EmployeeBody>
+    values: EmployeeData,
+    { setSubmitting, resetForm }: FormikHelpers<EmployeeData>
   ) => {
     handleAddSubmit(values);
     setSubmitting(false);

@@ -11,4 +11,6 @@ export const initialData = {
       lastName: '',
     },
   ],
+  createdAt: '',
+  updatedAt: '',
 };

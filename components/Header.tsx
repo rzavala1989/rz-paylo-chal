@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 
 const Header: React.FC = () => {
-  console.log(globalThis);
   return (
     <>
       <div

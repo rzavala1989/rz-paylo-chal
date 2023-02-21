@@ -8,4 +8,6 @@ export interface EmployeeBody {
   phone: string;
   numDependents: number;
   dependents: Dependent[];
+  createdAt?: Date | undefined;
+  updatedAt?: Date | undefined;
 }

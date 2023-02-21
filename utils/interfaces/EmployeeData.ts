@@ -10,4 +10,6 @@ export interface EmployeeData {
 export interface Dependent {
   firstName: string;
   lastName: string;
+  createdAt?: Date | undefined;
+  updatedAt?: Date | undefined;
 }

@@ -12,6 +12,8 @@ const getAllEmployees = catchAsyncErrors(
       data: {
         employees,
       },
+      // 'eagar loading' of dependents
+      include: { dependents: true },
     });
   }
 );
@@ -28,9 +30,13 @@ const createEmployee = catchAsyncErrors(
           phone: employeeBody.phone,
           numDependents: employeeBody.numDependents,
           dependents: {
-            create: employeeBody.dependents,
+            create: employeeBody.dependents.map((dependent) => ({
+              firstName: dependent.firstName,
+              lastName: dependent.lastName,
+            })),
           },
         },
+        include: { dependents: true },
       });
       res.json(newEmployee);
     } catch (err) {
