@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Employee {
-  id            Int     @id @default(autoincrement())
+  id            String     @id @default(cuid())
   firstName     String
   lastName      String
   email         String
@@ -21,9 +21,9 @@ model Employee {
 }
 
 model Dependent {
-  id        Int    @id @default(autoincrement())
+  id        String     @id @default(cuid())
   firstName String
   lastName  String
   employee  Employee? @relation(fields: [employeeId], references: [id])
-  employeeId Int?
+  employeeId String?
 }

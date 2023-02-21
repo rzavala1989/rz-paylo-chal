@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFormikContext } from 'formik';
-import { EmployeeData } from '@/pages/apply';
+import { EmployeeData } from '@/utils/interfaces/EmployeeData';
 
 export const EmployeePreviewCard = () => {
   const { values } = useFormikContext();
@@ -24,7 +24,7 @@ export const EmployeePreviewCard = () => {
   const discountedTotalCost = totalCost - discount;
 
   return (
-    <div className='flex flex-col gap-4'>
+    <aside className='flex flex-col gap-4'>
       <div className='bg-[#160f62b7] text-white border-2 rounded-md border-orange-500 shadow  p-4 w-full'>
         <h3 className='text-lg font-bold mb-2'>Cost of Benefits</h3>
         <p className='mb-2'>Employee: ${employeeCost.toFixed(2)}</p>
@@ -58,6 +58,6 @@ export const EmployeePreviewCard = () => {
           {(employeePaycheck - discountedTotalCost / numPaychecks).toFixed(2)}
         </p>
       </div>
-    </div>
+    </aside>
   );
 };

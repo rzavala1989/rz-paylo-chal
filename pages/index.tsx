@@ -29,7 +29,7 @@ export default function Home() {
 
       <section className='lg:w-full flex justify-around'>
         <NavButton href='apply' />
-        <NavButton href='employees-table' />
+        <NavButton href='employees' />
       </section>
 
       <div className='bg-white text-black'>

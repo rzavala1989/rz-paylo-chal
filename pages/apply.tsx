@@ -2,18 +2,22 @@ import { ApplicationSchema } from '@/utils/schemas/ApplicationSchema';
 import { Formik, Form, FormikHelpers } from 'formik';
 import React from 'react';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
-import { initialData } from './api/initialData';
-import FormApplicant from './form-applicant';
+import { initialData } from '../utils/initialData';
+import FormApplicant from '../components/FormApplicant';
 import { EmployeePreviewCard } from '@/components/EmployeePreviewCard';
 import { EmployeeData } from '@/utils/interfaces/EmployeeData';
-import { createEmployee } from './api/employees';
+import axios from 'axios';
 
-const ApplyForm: React.FC<{}> = () => {
+type Props = {
+  onHandleSubmit: (values: EmployeeData) => void;
+};
+
+const ApplyForm: React.FC<Props> = ({ onHandleSubmit }) => {
   const handleSubmit = async (
     values: EmployeeData,
     { setSubmitting, resetForm }: FormikHelpers<EmployeeData>
   ) => {
-    createEmployee(values);
+    onHandleSubmit(values);
     setSubmitting(false);
     resetForm();
   };

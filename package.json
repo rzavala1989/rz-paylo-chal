@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "server": "nodemon pages/api/server.ts",
+    "server": "nodemon pages/api/server.js",
+    "export": "next export",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -26,6 +27,7 @@
     "formik": "^2.2.9",
     "framer-motion": "^9.0.4",
     "next": "13.1.6",
+    "next-connect": "^0.13.0",
     "prisma": "^4.10.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",

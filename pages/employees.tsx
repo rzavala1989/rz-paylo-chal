@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from 'react';
+import { GetServerSideProps } from 'next';
 import axios from 'axios';
-import { EmployeeResponse } from '@/utils/interfaces/EmployeeResponse';
+import { EmployeeBody } from '@/utils/interfaces/EmployeeBody';
 
-const EmployeeTable = () => {
-  const [employees, setEmployees] = useState<EmployeeResponse[]>([]);
+type Props = {
+  results: EmployeeBody[];
+};
+
+const EmployeeTable = ({ results }: Props) => {
+  console.log(results);
+  const [employeesData, setEmployeesData] = useState<EmployeeBody[]>(results);
 
   useEffect(() => {
     axios.get('/api/employees').then((res) => {
-      setEmployees(res.data);
+      setEmployeesData(results);
     });
-  }, []);
+  }, [results]);
+
   return (
     <div className='flex flex-col h-100'>
       <div className='my-2 overflow-x-auto sm:-mx-6 lg:-mx-8'>
@@ -58,7 +65,7 @@ const EmployeeTable = () => {
                 </tr>
               </thead>
               <tbody className='bg-white divide-y divide-gray-200'>
-                {employees.map((employee) => (
+                {employeesData?.map((employee) => (
                   <tr key={employee.email}>
                     <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
                       {employee.id}
@@ -87,6 +94,16 @@ const EmployeeTable = () => {
       </div>
     </div>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const { data } = await axios.get('http://localhost:3000/api/employees');
+
+  return {
+    props: {
+      results: data.data.employees,
+    },
+  };
 };
 
 export default EmployeeTable;
