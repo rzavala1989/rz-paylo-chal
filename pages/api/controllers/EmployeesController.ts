@@ -2,6 +2,7 @@ import catchAsyncErrors from '@/utils/middleware/catchAsyncErrors';
 import { NextApiRequest, NextApiResponse } from 'next';
 import prisma from '../../../prismaClient';
 import { EmployeeBody } from '@/utils/interfaces/EmployeeBody';
+import { calculateBenefits } from '@/utils/benefitsCalculator';
 
 const getAllEmployees = catchAsyncErrors(
   async (req: NextApiRequest, res: NextApiResponse) => {
@@ -38,7 +39,11 @@ const createEmployee = catchAsyncErrors(
         },
         include: { dependents: true },
       });
-      res.json(newEmployee);
+
+      // find the employee that was just created, and return its benefits
+      const benefits = await calculateBenefits(newEmployee);
+
+      res.json({ newEmployee, benefits });
     } catch (err) {
       console.error(err);
       res.status(500).send('Internal server error');

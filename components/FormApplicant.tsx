@@ -22,7 +22,7 @@ const FormApplicant: React.FC = () => {
     <>
       <div>
         <h1 className='font-bold uppercase text-5xl'>
-          Send us a <br /> message
+          Lets enter some <br /> info
         </h1>
       </div>
       <div className='flex flex-col gap-5 md:grid-cols-2 mt-5'>

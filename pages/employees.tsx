@@ -89,6 +89,11 @@ const EmployeeTable = ({ results }: Props) => {
                 ))}
               </tbody>
             </table>
+            <section className='my-8'>
+              <em>
+                Employee Benefits and Pay info aggregated here - unfinished
+              </em>
+            </section>
           </div>
         </div>
       </div>

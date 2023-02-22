@@ -6,6 +6,11 @@ export const EmployeePreviewCard = () => {
   const { values } = useFormikContext();
   const { numDependents, firstName, lastName } = values as EmployeeData;
 
+  /*NOTE: This is where you would calculate the cost of benefits for the employee and their dependents. 
+          For this challenge, taking into consideration its unfinished, I just hardcode the values.
+          The values are calculated in the utils folder in the calculateBenefits 
+          so they can be returned in the Employee table */
+
   //constants
   const fullName = `${firstName} ${lastName}`;
   const employeeCost = 1000;
